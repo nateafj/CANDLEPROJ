@@ -1,19 +1,36 @@
-// Main.java
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the first integer: ");
-        int intA = scanner.nextInt();
+        System.out.println("Available candles:");
+        System.out.println("1. Sky Blue");
+        System.out.println("2. Orange Sunset");
+        System.out.println("3. Cloudy Daze");
+        System.out.print("Enter the number of the candle you want to purchase: ");
 
-        System.out.print("Enter the second integer: ");
-        int intB = scanner.nextInt();
+        int choice = scanner.nextInt();
+        String candleName = getCandleName(choice);
 
-        boolean result = equalCheck.exactEqual(intA, intB);
-        System.out.println("Are the integers equal? " + result);
+        if (candleName != null) {
+            CandleShop candleShop = new CandleShop();
+            candleShop.printReceipt(candleName);
+        } else {
+            System.out.println("Invalid choice. Please select a valid candle.");
+        }
+    }
 
-        scanner.close();
+    public static String getCandleName(int choice) {
+        switch (choice) {
+            case 1:
+                return "Sky Blue";
+            case 2:
+                return "Orange Sunset";
+            case 3:
+                return "Cloudy Daze";
+            default:
+                return null;
+        }
     }
 }
